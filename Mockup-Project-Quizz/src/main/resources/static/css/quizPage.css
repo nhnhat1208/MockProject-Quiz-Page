@@ -1,0 +1,152 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+    height: 1080px;
+    max-width: 1920px;
+    display: block;
+}
+
+header{
+    width: auto;
+    height: 7.5%;
+    min-height: 80px;
+    background-color: #4F5466;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+section.body{
+    width: auto;
+    height: 92.5%;
+    background-color: #F1F3EE;
+    display: block;
+}
+
+section.body div.body-header{
+    width: auto;
+    min-height: 30%;
+    background-color: #FCC730;
+    display: block;
+}
+section.body div.body-body{
+    width: auto;
+    height: 64%;
+    background-color: #F1F3EE;
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 4%;
+    margin: 0px;
+    display: block;
+}
+
+/* 594.4 */
+section.body div.body-body div.quiz{
+    width: auto;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    display: block;
+}
+/* 198.16 */
+section.body div.body-body div.quiz div.question{
+    width: auto;
+    height: 10%;
+    background-color: white;
+    padding: 5% 5% 5% 5%;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    text-align: center;
+}
+section.body div.body-body div.quiz div.question label{
+    font-size: 22pt;
+}
+section.body div.body-body div.quiz div.answer{
+    width: auto;
+    height: 40%;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    background-color: white;
+    padding: 5% 10% 5% 10%;
+    text-align: center;
+}
+section.body div.body-body div.quiz div.answer table{
+    width: 100%;
+    height: 100%;
+}
+section.body div.body-body div.quiz div.answer table td{
+    min-width: 400px;
+    min-height: 130px;
+    text-align: center;
+}
+
+section.body div.body-body div.quiz div.answer table button{
+    width: 400px;
+    height: 100px;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px 0px 0px 10px;
+    overflow: auto;
+}
+section.body div.body-body div.quiz div.answer table button:hover{
+    background-color: rgb(216, 216, 216);
+}
+section.body div.body-body div.quiz div.answer table button div.A{
+    width: 80px;
+    height: 28px;
+    padding: 35px 10px 35px 10px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #08D310;
+    display: block ;
+    float: left;
+}
+section.body div.body-body div.quiz div.answer table button div.B{
+    width: 80px;
+    height: 28px;
+    padding: 35px 10px 35px 10px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #EB1313;
+    display: block ;
+    float: left;
+}
+section.body div.body-body div.quiz div.answer table button div.C{
+    width: 80px;
+    height: 28px;
+    padding: 35px 10px 35px 10px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #F3F824;
+    display: block ;
+    float: left;
+}
+section.body div.body-body div.quiz div.answer table button div.D{
+    width: 80px;
+    height: 28px;
+    padding: 35px 10px 35px 10px;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #0835D3;
+    display: block ;
+    float: left;
+}
+section.body div.body-body div.quiz div.answer table button div.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    font-size: 10pt;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    background-color: white;
+}
+section.body div.body-body div.quiz div.answer table button div.right{
+    width: 258px;
+    height: 58px;
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+    float: left;
+    display: block;
+}

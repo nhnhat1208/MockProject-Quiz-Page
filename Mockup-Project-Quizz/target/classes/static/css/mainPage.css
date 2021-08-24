@@ -1,0 +1,30 @@
+.userinfo{
+	background-color:#FFFFFF;
+	width:20%;
+	float:left;
+	height:91vh;
+	border-right: 1px solid #D1D1D1; 
+    box-sizing: border-box;
+    margin:0;
+    padding:0;	
+}
+.dashboard{
+	background-color:#F1F3EE;
+	width:80%;
+	float:left;
+	height:91vh;
+	margin:0;
+	padding:0;
+  box-sizing: border-box;
+}
+
+#history {
+    padding: 10px;
+    margin: 0px 35px;
+}
+
+
+#recommendation {
+    padding: 10px;
+    margin: 0px 35px;
+}
