@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html lang="en">
 <head>
   <title>Main</title>
@@ -6,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script defer src="../lib/login.js"></script>
-  <link rel="stylesheet" href="../css/global.css">
+  <script defer src="/lib/login.js"></script>
+  <link rel="stylesheet" href="/css/global.css">
   <style>
         
         input {
@@ -40,12 +41,12 @@
 		        
 		        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 1% 10px auto auto;"  >
 		        	<a href="login.html"style="color: white;">
-		            Đăng nhập
+		            ÄÄng nhÃ¢Ì£p
 		            </a>
 		        </p>
 		        <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 1% 10px auto auto;"  >
 		        	<a href="signUp.html"style="color: white;">
-		            Đăng ký
+		            ÄÄng kyÌ
 		            </a>
 		        </p>
 		        <a href="main.html">
@@ -59,27 +60,27 @@
   				
 	        <Nav>
 	        <a href="#">
-	            <img class="logo" src="../img/logo.jpg" alt="Logo">
+	            <img class="logo" src="/images/logo.jpg" alt="Logo">
 	            <!-- image or something logo -->
 	        </a>
 	        </Nav>
 	        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1105px auto 1050px;"  >
 		        <a href="quiz_add.html"style="color: white;">
-		            Tạo Quiz
+		            Tạo Quiz
 		        </a>
 		    </p>
 	        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1105px auto auto;"  >
-		        <a href="admin_info.html"style="color: white;">
+		        <a href="/adminInfo"style="color: white;">
 		            Thông tin
 		        </a>
 		    </p>
 		    <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px 10px auto auto;"  >
-		      	<a href="login.html"style="color: white;">
-		            Đăng xuất
+		      	<a href="/login"style="color: white;">
+		            Đăng xuất
 		        </a>
 		    </p>
 	    </header>
-        <img style="min-width:100%" class="logo" src="../img/web_image.jpg" alt="Logo" >
+        <img style="min-width:100%" class="logo" src="/images/web_image.jpg" alt="Logo" >
                     
                     
                     

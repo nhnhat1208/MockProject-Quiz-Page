@@ -24,7 +24,7 @@ import quizz_mockup_project.spring.bean.UserAccount;
 import quizz_mockup_project.spring.utils.DBUtils;
 
 @Controller
-public class SingUpController {
+public class SignUpController {
 	@Autowired
 	ServletContext context;
 

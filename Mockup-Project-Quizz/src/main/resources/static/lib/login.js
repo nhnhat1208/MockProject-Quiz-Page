@@ -1,18 +1,24 @@
-const loginForm = document.getElementById("login_form");
-const loginButton = document.getElementById("submitButton");
-loginButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const username = loginForm.username.value;
-    const password = loginForm.password.value;
-	var role=0;
-	var usr = "admin",pass="123";
-    if (username === usr && password === pass) {
-        alert("You have successfully logged in.");
-		if(role==1)
-        	window.location.href = "mainPage.html";
-		window.location.href = "admin_info.html";
-    } else {
-        
-        alert("Wrong!");
-    }
-})
+var form = document.getElementById("login_form");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+function login() {
+	var user = $('#username').val();
+	var pwd = $('#password').val();
+	$.ajax({
+		type: "POST",
+		url: "/checkLogin",
+		data: { "user": user, "password": pwd },
+		success: function(data) {
+			if (data == 2) {
+				$(location).attr('href', '/adminInfo');
+			}
+			else if (data == 1) {
+				$(location).attr('href', '/home');
+			}
+			else if (data == 0) {
+				alert('The Username or Password is Incorrect');
+			}
+		}
+	});
+}

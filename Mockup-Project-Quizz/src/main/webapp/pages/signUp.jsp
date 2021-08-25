@@ -30,7 +30,7 @@
             Đăng ký
         </div>
         <div id="signUpForm">
-            <form id="theform" style="margin-left: 10%;">
+            <form id="theform" style="margin-left: 10%;" onsubmit="addUser()">
                 <div class="row">
                     <div class="colTitle">
                         <label for="fname">Tên đăng nhập</label>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <script src="/lib/signUp.js"></script>
-                <input type="Submit" id="submitBtn" onclick="addUser()" value="Submit">
+                <input type="Submit" id="submitBtn" value="Submit">
             </form>
         </div>
     </div>
