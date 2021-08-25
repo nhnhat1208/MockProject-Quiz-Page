@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import quizz_mockup_project.spring.bean.Quiz;
+import quizz_mockup_project.spring.bean.Test;
 import quizz_mockup_project.spring.bean.UserAccount;
 import quizz_mockup_project.spring.mapper.UserAccountMapper;
 
@@ -56,6 +58,23 @@ public class DBUtils extends JdbcDaoSupport {
 
 		Object[] params = new Object[] { account.getUsername(), account.getPassword(), account.getDateBirth(),
 				account.getEmail(), account.getJob(), account.getRole(), account.getImage() };
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+	public void newTest(Test test) throws SQLException {
+
+		String sql = "INSERT INTO [dbo].[Test] ([topic], [name], [category_id], [username]) VALUES (?,?,?,?);";
+
+		Object[] params = new Object[] { test.getTopic(), test.getName(), test.getCategory_id(), test.getUsername() };
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+	public void newQuiz(Quiz quiz) throws SQLException {
+
+		String sql = "INSERT INTO [dbo].[Quiz] ([test_id], [question], [correctAnsw], [incorrectAnsw_1], [incorrectAnsw_2], [incorrectAnsw_3]) VALUES (?,?,?,?,?,?);";
+
+		Object[] params = new Object[] { quiz.getTest_id(), quiz.getQuestion(), quiz.getCorrectAnsw(),
+				quiz.getIncorrectAnsw_1(), quiz.getIncorrectAnsw_2(), quiz.getIncorrectAnsw_3() };
 		this.getJdbcTemplate().update(sql, params);
 	}
 
