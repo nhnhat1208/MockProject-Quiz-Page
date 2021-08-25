@@ -35,14 +35,14 @@ public class SingUpController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String repassword = request.getParameter("repassword");
-		String dateBirth = request.getParameter("dateBirth");
+		String dateBirth = request.getParameter("birthday");
 		String email = request.getParameter("email");
 		String job = request.getParameter("job");
 		String imagefile = request.getParameter("image-file").toString();
 		// imagefile = imagefile.replace("\\", "/");
 		// String[] imageUrl = imagefile.split("/");
 		// imagefile = imageUrl[imageUrl.length - 1];
-		Integer role = Integer.parseInt(request.getParameter("role"));
+		Integer role = 1;
 		
 		if (!password.equals(repassword)) {
 			message = "Re-enter password not match";
