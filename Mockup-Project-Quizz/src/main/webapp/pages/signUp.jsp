@@ -26,7 +26,7 @@
             Đăng ký
         </div>
         <div id="signUpForm">
-            <form id="theform" method="post" style="margin-left: 10%;" enctype="multipart/form-data">
+            <form id="theform" method="post" style="margin-left: 10%;" action="${pageContext.request.contextPath}/signup">
                 <div class="row">
                     <div class="colTitle">
                         <label for="fname">Tên đăng nhập</label>
