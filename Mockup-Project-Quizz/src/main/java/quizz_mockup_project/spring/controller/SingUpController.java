@@ -41,34 +41,14 @@ public class SingUpController {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String message = null;
-
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-<<<<<<< HEAD
 		String dateBirth = request.getParameter("birthday");
 		String email = request.getParameter("email");
 		String job = request.getParameter("job");
 		String imagefile = request.getParameter("image");
 		Integer role = 1;
 
-=======
-		String repassword = request.getParameter("repassword");
-		String dateBirth = request.getParameter("birthday");
-		String email = request.getParameter("email");
-		String job = request.getParameter("job");
-		String imagefile = request.getParameter("image-file").toString();
-		// imagefile = imagefile.replace("\\", "/");
-		// String[] imageUrl = imagefile.split("/");
-		// imagefile = imageUrl[imageUrl.length - 1];
-		Integer role = 1;
-		
-		if (!password.equals(repassword)) {
-			message = "Re-enter password not match";
-			model.addAttribute("message", message);
-			return "signUp";
-		}
-		
->>>>>>> f16d59f05fec98067918fa36080cbfc59c6c1ae0
 		try {
 			if (this.dao.findUser(username) != null) {
 				response.getWriter().write("0"); // 0 mean Username đã tồn tại
