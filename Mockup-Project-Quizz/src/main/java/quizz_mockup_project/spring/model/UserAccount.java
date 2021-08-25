@@ -1,4 +1,4 @@
-package com.quizweb.controller.model;
+package quizz_mockup_project.spring.model;
 
 public class UserAccount {
 	private String username;
