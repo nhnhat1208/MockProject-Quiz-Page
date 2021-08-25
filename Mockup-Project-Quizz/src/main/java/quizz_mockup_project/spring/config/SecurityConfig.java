@@ -10,8 +10,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import quizz_mockup_project.spring.filter.CookieFilter;
-import quizz_mockup_project.spring.filter.JDBCFilter;
 import quizz_mockup_project.spring.filter.SecurityFilter;
 
 @Configuration
@@ -29,28 +27,6 @@ public class SecurityConfig {
 		registrationBean.setFilter(securityFilter);
 		registrationBean.addUrlPatterns("/*");
 		registrationBean.setOrder(1); // set precedence
-		return registrationBean;
-	}
-
-	@Bean
-	public FilterRegistrationBean<JDBCFilter> jdbcFilterRegistrationBean() {
-		FilterRegistrationBean<JDBCFilter> registrationBean = new FilterRegistrationBean<JDBCFilter>();
-		JDBCFilter jdbcFilter = new JDBCFilter();
-
-		registrationBean.setFilter(jdbcFilter);
-		registrationBean.addUrlPatterns("/*");
-		registrationBean.setOrder(2); // set precedence
-		return registrationBean;
-	}
-
-	@Bean
-	public FilterRegistrationBean<CookieFilter> cookieFilterRegistrationBean() {
-		FilterRegistrationBean<CookieFilter> registrationBean = new FilterRegistrationBean<CookieFilter>();
-		CookieFilter cookieFilter = new CookieFilter();
-
-		registrationBean.setFilter(cookieFilter);
-		registrationBean.addUrlPatterns("/*");
-		registrationBean.setOrder(3); // set precedence
 		return registrationBean;
 	}
 
