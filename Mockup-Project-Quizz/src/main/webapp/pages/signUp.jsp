@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="/css/signUp.css">
     <link rel="stylesheet" href="/css/global.css">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+    
 </head>
 
 <body>
@@ -26,7 +30,7 @@
             Đăng ký
         </div>
         <div id="signUpForm">
-            <form id="theform" method="post" style="margin-left: 10%;" action="${pageContext.request.contextPath}/signup">
+            <form id="theform" style="margin-left: 10%;">
                 <div class="row">
                     <div class="colTitle">
                         <label for="fname">Tên đăng nhập</label>
@@ -82,7 +86,7 @@
                         <label for="img">Ảnh đại diện</label>
                     </div>
                     <div class="colInput" >
-                        <input id="image-file" type="file" >
+                        <input id="image-file" type="file" accept="image/jpeg" required >
                     </div>
                 </div>
                 <div class="row"  style="margin-left:100px; height: 40px;">
@@ -91,11 +95,14 @@
                         <span class="checkmark">I agree with terms conditions and privacy policy.</span>
                     </div>
                 </div>
-                <input type="submit" id="submitBtn" value="Submit">
+                <script src="/lib/signUp.js"></script>
+                <input type="Submit" id="submitBtn" onclick="addUser()" value="Submit">
             </form>
         </div>
     </div>
-    <script src="/lib/signUp.js"></script>
+
+
+  	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </body>
 
 

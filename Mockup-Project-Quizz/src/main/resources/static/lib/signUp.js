@@ -9,28 +9,62 @@ var check = function() {
     }
 }
 
-function logSubmit(event) {
-    var xhr = new XMLHttpRequest();
-    var url = "http://localhost:8000/";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json",'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
-            console.log(json.username + ", " + json.password + ", " + json.email + ", " + json.job + ", " + json.birthday + ", " +json.password);
-        }
-    };
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
-    const email = document.getElementById('email');
-    const job = document.getElementById('job');
-    const birthday = document.getElementById('birthday');
-    const image = document.querySelector('image-file');
-    var data = JSON.stringify({ "username": username,"password": password,"username": email,"job": job,"birthday": birthday});
-    xhr.send(data);
-    log.textContent = 'done send';
-    event.preventDefault();
+var form = document.getElementById("theform");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+function addUser(){
+	pushData();
+	uploadImage();	
 }
 
-const form = document.getElementById('theform');
-form.addEventListener('submit', logSubmit);
+function pushData() {
+    const username = $('#username').val();
+    const password =  $('#password').val();
+    const email =  $('#email').val();
+    const job =  $('#job').val();
+    const birthday = $('#birthday').val();
+    const image = $('input[type=file]').val().split('\\').pop();
+	$.ajax({
+		type: "POST",
+		url: "/addUser",
+		data: {
+			"username": username,
+			"password": password,
+			"email": email,
+			"job": job,
+			"birthday": birthday,
+			"image": image
+		},
+		success: function(data) {
+			if (data == 1) {
+				alert('Đăng kí thành công');
+				$(location).attr('href', '/login');
+			}
+			else if (data == 0){
+				alert('Username đã tồn tại');
+			}
+			else{
+				alert('Đăng kí không thành công (Unknown ERROR)')
+			}
+		}
+	});
+}
+
+function uploadImage() {
+	var fd = new FormData();
+	var file_data = $('input[type="file"]')[0].files; 
+	for (var i = 0; i < file_data.length; i++) {
+		fd.append("file_" + i, file_data[i]);
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "/uploadImage",
+		enctype: 'multipart/form-data',
+		cache: false,
+		processData: false,
+		contentType: false,
+		data: fd
+	});
+}

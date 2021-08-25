@@ -7,12 +7,14 @@ public class UserAccount {
 	private String email;
 	private String job;
 	private Integer role;
+	private String image;
 
 	public UserAccount() {
 		super();
 	}
-	
-	public UserAccount(String username, String password, String dateBirth, String email, String job, Integer role) {
+
+	public UserAccount(String username, String password, String dateBirth, String email, String job, Integer role,
+			String image) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -20,6 +22,7 @@ public class UserAccount {
 		this.email = email;
 		this.job = job;
 		this.role = role;
+		this.image = image;
 	}
 
 	public String getUsername() {
@@ -68,6 +71,14 @@ public class UserAccount {
 
 	public void setRole(Integer role) {
 		this.role = role;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

@@ -1,10 +1,6 @@
 package quizz_mockup_project.spring.utils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -12,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import quizz_mockup_project.spring.bean.UserAccount;
@@ -57,10 +52,10 @@ public class DBUtils extends JdbcDaoSupport {
 
 	public void newUser(UserAccount account) throws SQLException {
 
-		String sql = "INSERT INTO ? VALUE (?,?,?,?,?);";
+		String sql = "INSERT INTO [dbo].[Account] ([username], [password], [dateBirth], [email], [job], [role], [image]) VALUES (?,?,?,?,?,?,?);";
 
 		Object[] params = new Object[] { account.getUsername(), account.getPassword(), account.getDateBirth(),
-				account.getEmail(), account.getJob(), account.getRole() };
+				account.getEmail(), account.getJob(), account.getRole(), account.getImage() };
 		this.getJdbcTemplate().update(sql, params);
 	}
 
