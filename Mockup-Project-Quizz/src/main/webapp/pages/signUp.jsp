@@ -16,7 +16,7 @@
 <body>
     <header>
         <Nav>
-            <img class="logo" src="../img/logo.jpg" alt="Logo">
+            <img class="logo" src="images/logo.jpg" alt="Logo">
             <!-- image or something logo -->
         </Nav>
     </header>
