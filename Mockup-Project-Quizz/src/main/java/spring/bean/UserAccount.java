@@ -8,6 +8,10 @@ public class UserAccount {
 	private String job;
 	private Integer role;
 
+	public UserAccount() {
+		super();
+	}
+	
 	public UserAccount(String username, String password, String dateBirth, String email, String job, Integer role) {
 		super();
 		this.username = username;

@@ -1,4 +1,4 @@
-package com.quizweb.controller.filter;
+package quizz_mockup_project.spring.filter;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,13 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import com.quizweb.controller.conn.ConnectionUtils;
-import com.quizweb.controller.utils.AppUtils;
+import quizz_mockup_project.spring.conn.ConnectionUtils;
+import quizz_mockup_project.spring.utils.AppUtils;
 
-@WebFilter(filterName = "jdbcFilter", urlPatterns = { "/*" })
 public class JDBCFilter implements Filter {
 
 	public JDBCFilter() {
@@ -61,7 +59,7 @@ public class JDBCFilter implements Filter {
 		Collection<? extends ServletRegistration> values = servletRegistrations.values();
 		for (ServletRegistration sr : values) {
 			Collection<String> mappings = sr.getMappings();
-			if (mappings.contains(urlPattern)) {
+			if (mappings.contains(urlPattern) && !urlPattern.equals("/")) {
 				return true;
 			}
 		}

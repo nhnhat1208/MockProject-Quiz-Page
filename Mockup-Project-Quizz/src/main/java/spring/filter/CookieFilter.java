@@ -1,4 +1,4 @@
-package com.quizweb.controller.filter;
+package quizz_mockup_project.spring.filter;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,16 +10,19 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.quizweb.controller.model.UserAccount;
-import com.quizweb.controller.utils.DBUtils;
-import com.quizweb.controller.utils.AppUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
+import quizz_mockup_project.spring.bean.UserAccount;
+import quizz_mockup_project.spring.utils.DBUtils;
+import quizz_mockup_project.spring.utils.AppUtils;
+
 public class CookieFilter implements Filter {
+	
+	@Autowired
+	private DBUtils dao;
 
 	public CookieFilter() {
 	}
@@ -54,7 +57,7 @@ public class CookieFilter implements Filter {
 		if (checked == null && conn != null) {
 			String userName = AppUtils.getUserNameInCookie(req);
 			try {
-				UserAccount user = DBUtils.findUser(conn, userName);
+				UserAccount user = this.dao.findUser(userName);
 				AppUtils.storeLoginedUser(session, user);
 			} catch (SQLException e) {
 				e.printStackTrace();

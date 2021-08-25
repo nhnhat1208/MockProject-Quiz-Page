@@ -1,4 +1,4 @@
-package com.quizweb.controller.filter;
+package quizz_mockup_project.spring.filter;
 
 import java.io.IOException;
 
@@ -9,16 +9,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.quizweb.controller.model.UserAccount;
-import com.quizweb.controller.request.UserRoleRequestWrapper;
-import com.quizweb.controller.utils.AppUtils;
-import com.quizweb.controller.utils.SecurityUtils;
+import quizz_mockup_project.spring.bean.UserAccount;
+import quizz_mockup_project.spring.request.UserRoleRequestWrapper;
+import quizz_mockup_project.spring.utils.AppUtils;
+import quizz_mockup_project.spring.utils.SecurityUtils;
 
-@WebFilter(filterName = "securityFilter", urlPatterns = { "/*" })
 public class SecurityFilter implements Filter {
 
 	public SecurityFilter() {
@@ -51,10 +49,10 @@ public class SecurityFilter implements Filter {
 			String userName = loginedUser.getUsername();
 
 			// Các vai trò (Role).
-			String roles = loginedUser.getRole();
+			Integer role = loginedUser.getRole();
 
 			// Gói request cũ bởi một Request mới với các thông tin userName và Roles.
-			wrapRequest = new UserRoleRequestWrapper(userName, roles, request);
+			wrapRequest = new UserRoleRequestWrapper(userName, role.toString(), request);
 		}
 
 		// Các trang bắt buộc phải đăng nhập.
@@ -78,7 +76,7 @@ public class SecurityFilter implements Filter {
 			if (!hasPermission) {
 
 				RequestDispatcher dispatcher //
-						= request.getServletContext().getRequestDispatcher("/WEB-INF/views/accessDeniedView.jsp");
+						= request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/accessDeniedView.jsp");
 
 				dispatcher.forward(request, response);
 				return;
@@ -94,3 +92,4 @@ public class SecurityFilter implements Filter {
 	}
 
 }
+
