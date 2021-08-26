@@ -1,4 +1,4 @@
-function answer(id) {
+function answer(test_id, id) {
 	var quiz_id = document.getElementsByClassName("question")[0].getAttribute("id");
 	var ans = document.getElementById(id).children[1].textContent;
 	
@@ -6,6 +6,7 @@ function answer(id) {
 		type: "POST",
 		url: "/answerQuestion",
 		data: {
+			"test_id": test_id,
 			"quiz_id": quiz_id,
 			"answer": ans,
 		},
@@ -14,7 +15,7 @@ function answer(id) {
 				$(location).attr('href', '/quiz_entrance');
 			}
 			else {
-				$(location).attr('href', '/quizpage?quiz_id=' + data);
+				$(location).attr('href', '/quizpage' + data);
 			}
 		}
 	});

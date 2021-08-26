@@ -179,22 +179,9 @@ public class DBUtils extends JdbcDaoSupport {
 	}
 
 	public void insertScore(Score score) throws SQLException {
-		String sql = "select * from SCORE where username = ? and test_id = ?;";
+		String sql = "Insert into [dbo].[Score] (username,test_id,attemp,score,numsCorrectperTotal) values (?,?,?,?,?);";
 
-		Object[] params = new Object[] { score.getUsername(), score.getTest_id() };
-		ScoreMapper mapper = new ScoreMapper();
-		Score result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
-
-		if (result == null) { // chưa tồn tại product trong cart
-			sql = "Insert into SCORE (username,test_id,attemp,score) values (?,?,?,?,?);";
-
-			params = new Object[] { score.getUsername(), score.getTest_id(), 1, score.getScore(), score.getNumsCorrectperTotal() };
-
-		} else { // đã có product trong cart
-			sql = "Update SCORE set attemp=attemp+1, score=?, numsCorrectperTotal=? where username=? and test_id=?;";
-
-			params = new Object[] { score.getScore(), score.getNumsCorrectperTotal(), score.getUsername(), score.getTest_id() };
-		}
+		Object[] params = new Object[] { score.getUsername(), score.getTest_id(), 1, score.getScore(), score.getNumsCorrectperTotal() };
 
 		this.getJdbcTemplate().update(sql, params);
 	}

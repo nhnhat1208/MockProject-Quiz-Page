@@ -43,6 +43,7 @@ public class QuizPageController {
 		}
 		
 		Integer test_id = Integer.parseInt(request.getParameter("test_id"));
+		model.addAttribute("test_id", test_id);
 
 		List<Quiz> quizlist = this.dao.loadQuizes(test_id);
 
@@ -73,8 +74,6 @@ public class QuizPageController {
 	protected void markQuestion(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 
-		String message = null;
-
 		// String username =
 		// AppUtils.getLoginedUser(request.getSession()).getUsername();
 		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
@@ -84,7 +83,10 @@ public class QuizPageController {
 		String quiz_id = request.getParameter("quiz_id");
 		String answer = request.getParameter("answer");
 
-		List<Quiz> quizlist = this.dao.loadQuizes(8);
+		Integer test_id = Integer.parseInt(request.getParameter("test_id"));
+
+		List<Quiz> quizlist = this.dao.loadQuizes(test_id);
+		
 		Quiz nextquiz = new Quiz();
 		Integer correctedAnswers = 0;
 
@@ -95,7 +97,7 @@ public class QuizPageController {
 					request.getSession().setAttribute("correctedAnswers", correctedAnswers + 1);
 				}
 				if (i + 1 == quizlist.size()) {
-					Score score = new Score(username, nextquiz.getId(), 1, (correctedAnswers + 1) / quizlist.size(), "" + correctedAnswers + '/' + quizlist.size());
+					Score score = new Score(username, test_id, 1, (correctedAnswers + 1) / quizlist.size(), "" + correctedAnswers + '/' + quizlist.size());
 					try {
 						this.dao.insertScore(score);
 					} catch (SQLException e) {
@@ -109,7 +111,7 @@ public class QuizPageController {
 			}
 		}
 
-		response.getWriter().write(nextquiz.getId());
+		response.getWriter().write("?test_id=" + nextquiz.getTest_id() + "&quiz_id=" + nextquiz.getId());
 
 		return;
 
