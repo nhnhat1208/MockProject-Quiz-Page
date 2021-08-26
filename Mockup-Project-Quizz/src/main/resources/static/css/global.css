@@ -1,18 +1,23 @@
-header {
+header{
+    width: auto;
+    min-height: 70px;
     background-color: #4F5466;
-    margin: 0;
-    padding: 0;  
-    height: 70px;
-    width: 100%;
-    box-sizing: border-box;
-    justify-content: space-between;
-    display: flex;
-    align-items: center
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    height: 1080px;
+    max-width: 1920px;
+    display: block;
 }
 
 
 
-html, body {
+html{
     margin: 0;
     padding: 0;
     height: 100%;
