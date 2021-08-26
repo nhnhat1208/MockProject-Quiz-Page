@@ -3,108 +3,45 @@
 
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="/css/signUp.css">
-    <link rel="stylesheet" href="/css/global.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
-    
-</head>
+    <head>
+        <title>quiz entrance</title>
+		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/global.css">
+        <link rel="stylesheet" href= "../css/quizEntrance.css">
+    </head>
 
-<body>
-    <header>
-        <Nav>
-            <img class="logo" src="images/logo.jpg" alt="Logo">
-            <!-- image or something logo -->
-        </Nav>
-    </header>
+    <body>
+        <header>
+            <a href="#">
+                <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
+            </a>
+            <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng xuất</a>
+            <a href="/home" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Thông tin</a>
+        </header>
+        <section class="body">
+            <div class="body-header">
 
-    <div class="signUp">
-        <div id="bannerForm">
-            Đăng ký
-        </div>
-        <div id="signUpForm">
-            <form id="theform" style="margin-left: 10%;" onsubmit="addUser()">
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="fname">Tên đăng nhập</label>
+            </div>
+            <div class="body-body">
+                <div class="alert">
+                    <div class="alert-header">
+                        <label>Làm bài kiểm tra</label>
                     </div>
-                    <div class="colInput">
-                        <input type="text" id="username" name="username" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="lname">Mật khẩu</label>
-                    </div>
-                    <div class="colInput">
-                        <input type="password" id="password" name="password"  onkeyup="check();" required>
-                        <span id='message'></span>
+                    <div class="alert-body">
+                        <label>Bạn sẽ bắt đầu làm bài kiểm tra này </label>
+                        <br>
+                        <br>
+                        <label>Điểm kiểm tra lần trước: </label>
+                        <label>1000</label>
+                        <br>
+                        <br>
+                        <button id="cancel" onclick="mainPage()">Hủy bỏ</button>
+                        <button id="ok" onclick="quizPage(${test_id})">Xác nhận</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="lname">Nhập lại mật khẩu</label>
-                    </div>
-                    <div class="colInput">
-                        <input type="password" id="repassword" name="repassword" onkeyup="check();">
-                        <span id='message'></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="lname">Địa chỉ email</label>
-                    </div>
-                    <div class="colInput">
-                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="lname">Nghề nghiệp</label>
-                    </div>
-                    <div class="colInput">
-                        <input type="text" id="job" name="job" >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="fname">Ngày sinh</label>
-                    </div>
-                    <div class="colInput" style="padding: 0;" >
-                        <input type="date" id="birthday" name="birthday" style="border: 0px solid;" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="colTitle">
-                        <label for="img">Ảnh đại diện</label>
-                    </div>
-                    <div class="colInput" >
-                        <input id="image-file" type="file" accept="image/jpeg" required >
-                    </div>
-                </div>
-                <div class="row"  style="margin-left:100px; height: 40px;">
-                    <div class="colInput" style="margin-left: 80px;">
-                        <input type="checkbox" style="margin-top: 4px;" required>
-                        <span class="checkmark">I agree with terms conditions and privacy policy.</span>
-                    </div>
-                </div>
-                <script src="/lib/signUp.js"></script>
-                <input type="Submit" id="submitBtn" value="Submit">
-            </form>
-        </div>
-    </div>
-
-
-  	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-</body>
-
-
-
-</html>
+            </div>
+        </section>
+    <script src="../lib/quizEntrance.js"></script>
+    </body>
