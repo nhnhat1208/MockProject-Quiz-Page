@@ -1,22 +1,4 @@
 
-body{
-    margin: 0px;
-    padding: 0px;
-    width: 1920px;
-    height: 1080px;
-    max-width: 1920px;
-    display: block;
-}
-
-header{
-    width: auto;
-    height: 7.5%;
-    min-height: 80px;
-    background-color: #4F5466;
-    margin: 0px;
-    padding: 0px;
-    display: block;
-}
 
 section.body{
     width: auto;
