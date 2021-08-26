@@ -2,7 +2,6 @@ package quizz_mockup_project.spring.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,8 +11,13 @@ public class CategoryMapper implements RowMapper<Category> {
 
 	@Override
 	public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+
+		Integer id = rs.getInt("ID");
+		String name = rs.getString("NAME");
+		String description = rs.getString("DESCRIPTION");
+		String img_src = rs.getString("IMG_SRC");
+
+		return new Category(id, name, description, img_src);
 	}
 
 }
