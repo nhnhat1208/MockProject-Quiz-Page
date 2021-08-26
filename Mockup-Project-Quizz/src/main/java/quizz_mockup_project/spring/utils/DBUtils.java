@@ -17,6 +17,7 @@ import quizz_mockup_project.spring.bean.Test;
 import quizz_mockup_project.spring.bean.TestInfo;
 import quizz_mockup_project.spring.bean.TestSuggest;
 import quizz_mockup_project.spring.bean.UserAccount;
+import quizz_mockup_project.spring.mapper.CategoryMapper;
 import quizz_mockup_project.spring.mapper.TestInfoMapper;
 import quizz_mockup_project.spring.mapper.TestMapper;
 import quizz_mockup_project.spring.mapper.TestSuggestMapper;
