@@ -27,15 +27,9 @@
 		<a href="#"> <img class="logo"
 			style="object-fit: scale-down; margin: 5px 0px 10px 50px; height: 55px; width: 55px;"
 			src="../images/logo.png" alt="Logo">
-		</a> <a href="login.html"
+		</a> <a href="/logout"
 			style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng
-			xuất</a> <a href="quiz_add.html"
-			style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Tạo
-			đề</a> <a href="#"
-			style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Làm
-			quiz</a> <a href="mainPage.html"
-			style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Thông
-			tin</a>
+			xuất</a> 
 	</header>
 	<section class="body">
 		<div class="body-header"></div>

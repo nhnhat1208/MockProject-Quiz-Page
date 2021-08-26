@@ -97,7 +97,8 @@ public class QuizPageController {
 					request.getSession().setAttribute("correctedAnswers", correctedAnswers + 1);
 				}
 				if (i + 1 == quizlist.size()) {
-					Score score = new Score(username, test_id, 1, (correctedAnswers + 1) / quizlist.size(), "" + correctedAnswers + '/' + quizlist.size());
+					correctedAnswers = (Integer) request.getSession().getAttribute("correctedAnswers");
+					Score score = new Score(username, test_id, 1, correctedAnswers  *100  / quizlist.size(), "" + correctedAnswers   + '/' + quizlist.size());
 					try {
 						this.dao.insertScore(score);
 					} catch (SQLException e) {

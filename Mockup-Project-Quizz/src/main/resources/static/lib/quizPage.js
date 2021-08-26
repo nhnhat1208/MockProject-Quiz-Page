@@ -12,7 +12,7 @@ function answer(test_id, id) {
 		},
 		success: function(data) {
 			if (data == -1) {
-				$(location).attr('href', '/quiz_entrance');
+				$(location).attr('href', '/quiz_entrance?test_id=' + test_id);
 			}
 			else {
 				$(location).attr('href', '/quizpage' + data);

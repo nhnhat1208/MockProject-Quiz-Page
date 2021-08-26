@@ -1,6 +1,6 @@
 function mainPage() {
-	window.location.href = "/mainpage";
+	window.location.href = "/home";
 }
 function quizPage(test_id) {
-	window.location.href = "/quizpage?test_id=" + test_id;
+	$(location).attr('href', "/quizpage?test_id=" + test_id);
 }
