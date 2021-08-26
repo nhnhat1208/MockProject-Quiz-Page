@@ -2,7 +2,6 @@ package quizz_mockup_project.spring.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,21 +31,26 @@ public class HomeController {
 			response.sendRedirect("/login");
 			return "login";
 		} else {
+			
 			UserAccount user = (UserAccount) objUserBean;
 			
 			if (user.getRole() == 0) {
+				System.out.println("0");
 				response.sendRedirect("/adminInfo");
 				return "admin_info";
 			} else {
+				
 				UserAccount userInfo = null;
 				List<TestInfo> testInfo = null;
 				List<TestSuggest> testSuggest = null;
 				try {
 					userInfo = this.dao.findUser(user.getUsername());
+					System.out.println(userInfo);
 					testInfo = this.dao.findTestInfo(user.getUsername());
+					System.out.println(testInfo);
 					testSuggest = this.dao.findTestSuggest(user.getUsername());
+					System.out.println(testSuggest);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				
 				request.setAttribute("testInfo", testInfo);
@@ -54,7 +58,9 @@ public class HomeController {
 				request.setAttribute("userInfo", userInfo);
 				
 				return "mainPage";
+				}
 			}
 		}
+		return null;
 	}
 }
