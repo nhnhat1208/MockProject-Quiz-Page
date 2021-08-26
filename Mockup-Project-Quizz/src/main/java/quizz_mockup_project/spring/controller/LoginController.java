@@ -40,6 +40,18 @@ public class LoginController {
 		}
 	}
 
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Object objUserBean = session.getAttribute("user");
+		if (objUserBean != null) {
+			session.setAttribute("user", null);
+		}
+		response.sendRedirect("/login");
+		return "login";
+
+	}
+
 	@PostMapping("/checkLogin")
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");

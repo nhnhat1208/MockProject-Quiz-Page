@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/mainPage.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/mainPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Trang chủ</title>
    
@@ -115,7 +115,7 @@
 
 
     </div>
-    <script src="../lib/mainPage.js"></script>
+    <script src="/lib/mainPage.js"></script>
     <script>
         function GoQuiz(index) {
             console.log(index);

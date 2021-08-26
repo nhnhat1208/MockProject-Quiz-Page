@@ -75,7 +75,7 @@
 		        </a>
 		    </p>
 		    <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px 10px auto auto;"  >
-		      	<a href="/login"style="color: white;">
+		      	<a href="/logout"style="color: white;">
 		            Đăng xuất
 		        </a>
 		    </p>
