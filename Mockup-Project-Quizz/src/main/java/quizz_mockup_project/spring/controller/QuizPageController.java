@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import quizz_mockup_project.spring.bean.Category;
 import quizz_mockup_project.spring.bean.Quiz;
+import quizz_mockup_project.spring.bean.Score;
 import quizz_mockup_project.spring.bean.Test;
 import quizz_mockup_project.spring.bean.UserAccount;
 import quizz_mockup_project.spring.utils.DBUtils;
@@ -40,8 +41,10 @@ public class QuizPageController {
 		if (request.getParameter("quiz_id") != null) {
 			quiz_id = Integer.parseInt(request.getParameter("quiz_id"));
 		}
+		
+		Integer test_id = Integer.parseInt(request.getParameter("test_id"));
 
-		List<Quiz> quizlist = this.dao.loadQuizes(8);
+		List<Quiz> quizlist = this.dao.loadQuizes(test_id);
 
 		if (quizlist == null) {
 			model.addAttribute("question", "No question in this test");
@@ -83,14 +86,21 @@ public class QuizPageController {
 
 		List<Quiz> quizlist = this.dao.loadQuizes(8);
 		Quiz nextquiz = new Quiz();
+		Integer correctedAnswers = 0;
 
 		for (Integer i = 0; i < quizlist.size(); i++) {
 			if (quizlist.get(i).getId().equals(Integer.parseInt(quiz_id))) {
 				if (quizlist.get(i).getCorrectAnsw().equals(answer)) {
-					Integer correctedAnswers = (Integer) request.getSession().getAttribute("correctedAnswers");
+					correctedAnswers = (Integer) request.getSession().getAttribute("correctedAnswers");
 					request.getSession().setAttribute("correctedAnswers", correctedAnswers + 1);
 				}
 				if (i + 1 == quizlist.size()) {
+					Score score = new Score(username, nextquiz.getId(), 1, (correctedAnswers + 1) / quizlist.size(), "" + correctedAnswers + '/' + quizlist.size());
+					try {
+						this.dao.insertScore(score);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 					response.getWriter().write("-1"); // Done test
 					return;
 				}

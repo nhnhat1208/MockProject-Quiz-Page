@@ -13,12 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import quizz_mockup_project.spring.bean.Category;
 import quizz_mockup_project.spring.bean.Quiz;
+import quizz_mockup_project.spring.bean.Score;
 import quizz_mockup_project.spring.bean.Test;
 import quizz_mockup_project.spring.bean.TestInfo;
 import quizz_mockup_project.spring.bean.TestSuggest;
 import quizz_mockup_project.spring.bean.UserAccount;
 import quizz_mockup_project.spring.mapper.CategoryMapper;
 import quizz_mockup_project.spring.mapper.QuizMapper;
+import quizz_mockup_project.spring.mapper.ScoreMapper;
 import quizz_mockup_project.spring.mapper.TestInfoMapper;
 import quizz_mockup_project.spring.mapper.TestMapper;
 import quizz_mockup_project.spring.mapper.TestSuggestMapper;
@@ -174,6 +176,27 @@ public class DBUtils extends JdbcDaoSupport {
 		Object[] params = new Object[] { test_id };
 		QuizMapper mapper = new QuizMapper();
 		return this.getJdbcTemplate().query(sql, params, mapper);
+	}
+
+	public void insertScore(Score score) throws SQLException {
+		String sql = "select * from SCORE where username = ? and test_id = ?;";
+
+		Object[] params = new Object[] { score.getUsername(), score.getTest_id() };
+		ScoreMapper mapper = new ScoreMapper();
+		Score result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+
+		if (result == null) { // chưa tồn tại product trong cart
+			sql = "Insert into SCORE (username,test_id,attemp,score) values (?,?,?,?,?);";
+
+			params = new Object[] { score.getUsername(), score.getTest_id(), 1, score.getScore(), score.getNumsCorrectperTotal() };
+
+		} else { // đã có product trong cart
+			sql = "Update SCORE set attemp=attemp+1, score=?, numsCorrectperTotal=? where username=? and test_id=?;";
+
+			params = new Object[] { score.getScore(), score.getNumsCorrectperTotal(), score.getUsername(), score.getTest_id() };
+		}
+
+		this.getJdbcTemplate().update(sql, params);
 	}
 
 }
