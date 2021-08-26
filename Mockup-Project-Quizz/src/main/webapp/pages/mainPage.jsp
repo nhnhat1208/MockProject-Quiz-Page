@@ -112,7 +112,7 @@
 	                            ${test.name }
 	                        </div>
 	                        <div id="PlayQuizRecommend">
-	                            <a href="/quiz_entrance?test_id=${test.id} class="gg-play-button-o"><i class="fa fa-play fa-2x"></i></a>
+	                            <a href="/quiz_entrance?test_id=${test.id}" class="gg-play-button-o"><i class="fa fa-play fa-2x"></i></a>
 	                        </div>
 	                    </div>
 	                </div>
