@@ -1,6 +1,7 @@
 package quizz_mockup_project.spring.utils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -12,7 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import quizz_mockup_project.spring.bean.Quiz;
 import quizz_mockup_project.spring.bean.Test;
+import quizz_mockup_project.spring.bean.TestInfo;
+import quizz_mockup_project.spring.bean.TestSuggest;
 import quizz_mockup_project.spring.bean.UserAccount;
+import quizz_mockup_project.spring.mapper.TestInfoMapper;
+import quizz_mockup_project.spring.mapper.TestMapper;
+import quizz_mockup_project.spring.mapper.TestSuggestMapper;
 import quizz_mockup_project.spring.mapper.UserAccountMapper;
 
 @Repository
@@ -67,6 +73,37 @@ public class DBUtils extends JdbcDaoSupport {
 
 		Object[] params = new Object[] { test.getTopic(), test.getName(), test.getCategory_id(), test.getUsername() };
 		this.getJdbcTemplate().update(sql, params);
+	}
+	
+	public List<TestInfo> findTestInfo(String username) throws SQLException {
+
+		String sql = "SELECT c.id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
+				+ "INNER JOIN Test t ON a.username = t.username "
+				+ "INNER JOIN Category c ON t.category_id = c.id "
+				+ "INNER JOIN Score s ON t.id = s.test_id "
+				+ "WHERE a.username = ?;";
+		
+		Object[] params = new Object[] { username };
+		TestInfoMapper mapper = new TestInfoMapper();
+		try {
+			List<TestInfo> testInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return testInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<TestSuggest> findTestSuggest(String username) throws SQLException {
+		String sql = "SELECT * FROM Category where id not in (select category_id from Test where username = ?);";
+		
+		Object[] params = new Object[] { username };
+		TestSuggestMapper mapper = new TestSuggestMapper();
+		try {
+			List<TestSuggest> testSuggest = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return testSuggest;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	public void newQuiz(Quiz quiz) throws SQLException {

@@ -74,9 +74,9 @@ var test2 = {
     "a":"a",
     "b":[test,test]
 }
-test2.b.forEach(element => {
+/*test2.b.forEach(element => {
     addToHistory(element);
     addToRecommended(element)
-});
+});*/
 
-addToInformationSection(infor)
+/*addToInformationSection(infor)*/
