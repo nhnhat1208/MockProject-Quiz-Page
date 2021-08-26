@@ -1,4 +1,4 @@
-function createHistoryItem(item) {
+function createHistoryItem(item) { 
     return `<div id="historyItem">
                 <img src= "${item.quiz_image}" alt="" style="object-fit: cover; float: left;">
                 <div style="float:left; margin-left: 15px; width: 50%;">
