@@ -11,14 +11,13 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import quizz_mockup_project.spring.bean.Category;
 import quizz_mockup_project.spring.bean.Quiz;
 import quizz_mockup_project.spring.bean.Test;
 import quizz_mockup_project.spring.bean.TestInfo;
 import quizz_mockup_project.spring.bean.TestSuggest;
 import quizz_mockup_project.spring.bean.UserAccount;
-import quizz_mockup_project.spring.mapper.TestInfoMapper;
-import quizz_mockup_project.spring.mapper.TestMapper;
-import quizz_mockup_project.spring.mapper.TestSuggestMapper;
+
 import quizz_mockup_project.spring.mapper.UserAccountMapper;
 
 @Repository
@@ -113,6 +112,39 @@ public class DBUtils extends JdbcDaoSupport {
 		Object[] params = new Object[] { quiz.getTest_id(), quiz.getQuestion(), quiz.getCorrectAnsw(),
 				quiz.getIncorrectAnsw_1(), quiz.getIncorrectAnsw_2(), quiz.getIncorrectAnsw_3() };
 		this.getJdbcTemplate().update(sql, params);
+	}
+
+	public Test findTest(Test test) throws SQLException {
+		String sql = "SELECT * FROM [dbo].[Test] a WHERE a.name = ? AND a.username = ?;";
+
+		Object[] params = new Object[] { test.getName(), test.getUsername() };
+		TestMapper mapper = new TestMapper();
+		try {
+			Test result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return result;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public void newCategory(Category category) throws SQLException {
+		String sql = "INSERT INTO [dbo].[Category] ([name], [description], [img_src]) VALUES (?,?,?);";
+
+		Object[] params = new Object[] {category.getName(), category.getDescription(), category.getImg_src()};
+		this.getJdbcTemplate().update(sql, params);
+	}
+
+	public Category findCategory(String name) throws SQLException {
+		String sql = "SELECT * FROM [dbo].[Category] a WHERE a.name = ?;";
+		
+		Object[] params = new Object[] { name };
+		CategoryMapper mapper = new CategoryMapper();
+		try {
+			Category result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return result;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }
