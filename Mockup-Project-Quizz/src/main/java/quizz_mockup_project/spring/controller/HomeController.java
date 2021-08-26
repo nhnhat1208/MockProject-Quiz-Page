@@ -48,7 +48,7 @@ public class HomeController {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				
 				request.setAttribute("testInfo", testInfo);
 				request.setAttribute("testSuggest", testSuggest);
 				request.setAttribute("userInfo", userInfo);
