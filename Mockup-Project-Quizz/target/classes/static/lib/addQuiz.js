@@ -5,12 +5,15 @@ function deleteQuestion(id) {
 }
 function addQuestion() {
 	idnew = idnew + 1;
-	var newques = document.getElementById("listquiz");
+
+	var listquiz = document.getElementById("listquiz");
+	var newques = document.createElement("FIELDSET");
+	newques.id = 'ques' + idnew;
 	var option = "";
 	for (var i = 1; i <= 4; i++) {
 		option = option + "<div class = 'field'> \n";
 		option = option + "<div class = 'namefield'>Câu trả lời " + i + "</div> \n";
-		option = option + "<div class = 'inputfield' > <textarea id='ans" + idnew + "" + i + "' class = 'ansquiz'></textarea> </div>"
+		option = option + "<div class = 'inputfield' > <textarea id='ans" + idnew + "" + i + "' class = 'ansquiz'></textarea> </div>";
 		option = option + "<div class = 'clearfix'></div> \n";
 		option = option + "</div>";
 	}
@@ -22,9 +25,9 @@ function addQuestion() {
 		+ "<div class = 'clearfix'></div>"
 		+ "</div>"
 		+ option
-		+ "<div><button id='" + idnew + "'  class='floatright ' onclick='deleteQuestion(this.id)'>Xóa</button></div>"
-		+ "</fieldset>";
-
+		+ "<div><button id='" + idnew + "'  class='floatright ' onclick='deleteQuestion(this.id)'>Xóa</button></div>";
+	//+ "</fieldset>";
+	listquiz.appendChild(newques);
 }
 
 function addTest() {
@@ -46,19 +49,28 @@ function pushData() {
 		quizlist[i] = data;
 		//console.log(document.getElementById('quiztopic').value)
 	}
-	
+
 	console.log(quizlist);
-	
+
 	$.ajax({
 		type: "POST",
 		url: "/addQuiz",
 		data: {
 			"topic": document.getElementById('quiztopic').value,
-			"name" : document.getElementById('quizname').value,
+			"name": document.getElementById('quizname').value,
 			"quizlist": JSON.stringify(quizlist),
 		},
 		success: function(data) {
-			console.log(document.getElementsByName('topic').value);
+			if (data == 1) {
+				alert('Thêm thành công');
+				$(location).attr('href', '/addQuiz');
+			}
+			else if (data == 0){
+				alert('Tên của test đã tồn tại');
+			}
+			else{
+				alert('Thêm không thành công (Unknown ERROR)')
+			}
 		}
 	});
 
