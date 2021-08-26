@@ -1,5 +1,10 @@
 package quizz_mockup_project.spring.bean;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class Quiz {
 	private Integer id;
 	private Integer test_id;
@@ -78,5 +83,15 @@ public class Quiz {
 
 	public void setIncorrectAnsw_3(String incorrectAnsw_3) {
 		this.incorrectAnsw_3 = incorrectAnsw_3;
+	}
+	
+	public List<String> randomAns() {
+		List<String> ans = new ArrayList<String>();
+		ans.add(correctAnsw);
+		ans.add(incorrectAnsw_1);
+		ans.add(incorrectAnsw_2);
+		ans.add(incorrectAnsw_3);
+		Collections.shuffle(ans);
+		return ans;
 	}
 }

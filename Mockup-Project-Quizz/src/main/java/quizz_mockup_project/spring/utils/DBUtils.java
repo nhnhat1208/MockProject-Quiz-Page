@@ -18,6 +18,7 @@ import quizz_mockup_project.spring.bean.TestInfo;
 import quizz_mockup_project.spring.bean.TestSuggest;
 import quizz_mockup_project.spring.bean.UserAccount;
 import quizz_mockup_project.spring.mapper.CategoryMapper;
+import quizz_mockup_project.spring.mapper.QuizMapper;
 import quizz_mockup_project.spring.mapper.TestInfoMapper;
 import quizz_mockup_project.spring.mapper.TestMapper;
 import quizz_mockup_project.spring.mapper.TestSuggestMapper;
@@ -148,6 +149,14 @@ public class DBUtils extends JdbcDaoSupport {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public List<Quiz> loadQuizes(Integer test_id) {
+		String sql = "SELECT * from [dbo].[Quiz] a WHERE a.test_id = ?;";
+
+		Object[] params = new Object[] { test_id };
+		QuizMapper mapper = new QuizMapper();
+		return this.getJdbcTemplate().query(sql, params, mapper);
 	}
 
 }

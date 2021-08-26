@@ -2,7 +2,6 @@ package quizz_mockup_project.spring.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,14 @@ public class AddQuizController {
 		if (objUserBean == null) {
 			return "login";
 		} else {
-			return "quiz_add";
+			UserAccount user = (UserAccount) objUserBean;
+			if (user.getRole() == 0) {
+				return "quiz_add";
+			} else {
+				response.sendRedirect("/home");
+				return "mainPage";
+			}
+
 		}
 	}
 
@@ -46,7 +52,10 @@ public class AddQuizController {
 
 		// String username =
 		// AppUtils.getLoginedUser(request.getSession()).getUsername();
-		UserAccount user = (UserAccount) request.getSession().getAttribute("loginedUser");
+		UserAccount user = (UserAccount) request.getSession().getAttribute("user");
+		if (user == null) {
+			loadPage(request, response);
+		}
 		String username = user.getUsername();
 
 		response.setContentType("text/html;charset=UTF-8");
@@ -54,6 +63,8 @@ public class AddQuizController {
 		String name = request.getParameter("name");
 		String list = request.getParameter("quizlist");
 		JSONObject listquiz = new JSONObject(list);
+		list = request.getParameter("rightanswerlist");
+		JSONObject listrightanswer = new JSONObject(list);
 
 		Category category = null;
 
@@ -63,6 +74,7 @@ public class AddQuizController {
 				category = new Category(0, topic, "", "");
 				this.dao.newCategory(category);
 			}
+			category = this.dao.findCategory(topic);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.getWriter().write("2");
@@ -86,9 +98,35 @@ public class AddQuizController {
 
 		for (Integer i = 0; i < listquiz.length(); i++) {
 			JSONObject quizObj = listquiz.getJSONObject(i.toString());
-			Quiz quiz = new Quiz(0, test.getId(), quizObj.getString("question"), quizObj.getString("correctAnsw"),
-					quizObj.getString("incorrectAnsw_1"), quizObj.getString("incorrectAnsw_2"),
-					quizObj.getString("incorrectAnsw_3"));
+
+			String correctAnsw = null;
+			String incorrectAnsw_1 = null;
+			String incorrectAnsw_2 = null;
+			String incorrectAnsw_3 = null;
+			if (listrightanswer.getString(i.toString()).equals("Câu trả lời 1")) {
+				correctAnsw = quizObj.getString("correctAnsw");
+				incorrectAnsw_1 = quizObj.getString("incorrectAnsw_1");
+				incorrectAnsw_2 = quizObj.getString("incorrectAnsw_2");
+				incorrectAnsw_3 = quizObj.getString("incorrectAnsw_3");
+			} else if (listrightanswer.getString(i.toString()).equals("Câu trả lời 2")) {
+				incorrectAnsw_1 = quizObj.getString("correctAnsw");
+				correctAnsw = quizObj.getString("incorrectAnsw_1");
+				incorrectAnsw_2 = quizObj.getString("incorrectAnsw_2");
+				incorrectAnsw_3 = quizObj.getString("incorrectAnsw_3");
+			} else if (listrightanswer.getString(i.toString()).equals("Câu trả lời 3")) {
+				incorrectAnsw_2 = quizObj.getString("correctAnsw");
+				incorrectAnsw_1 = quizObj.getString("incorrectAnsw_1");
+				correctAnsw = quizObj.getString("incorrectAnsw_2");
+				incorrectAnsw_3 = quizObj.getString("incorrectAnsw_3");
+			} else {
+				incorrectAnsw_3 = quizObj.getString("correctAnsw");
+				incorrectAnsw_1 = quizObj.getString("incorrectAnsw_1");
+				incorrectAnsw_2 = quizObj.getString("incorrectAnsw_2");
+				correctAnsw = quizObj.getString("incorrectAnsw_3");
+			}
+
+			Quiz quiz = new Quiz(0, test.getId(), quizObj.getString("question"), correctAnsw, incorrectAnsw_1,
+					incorrectAnsw_2, incorrectAnsw_3);
 
 			try {
 				this.dao.newQuiz(quiz);
