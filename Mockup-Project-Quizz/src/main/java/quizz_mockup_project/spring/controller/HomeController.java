@@ -43,6 +43,7 @@ public class HomeController {
 				UserAccount userInfo = null;
 				List<TestInfo> testInfo = null;
 				List<TestSuggest> testSuggest = null;
+				
 				try {
 					userInfo = this.dao.findUser(user.getUsername());
 					System.out.println(userInfo);
@@ -51,8 +52,12 @@ public class HomeController {
 					testSuggest = this.dao.findTestSuggest(user.getUsername());
 					System.out.println(testSuggest);
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
 				
+				
+				System.out.println(testSuggest);
 				request.setAttribute("testInfo", testInfo);
 				request.setAttribute("testSuggest", testSuggest);
 				request.setAttribute("userInfo", userInfo);
@@ -60,7 +65,5 @@ public class HomeController {
 				return "mainPage";
 				}
 			}
-		}
-		return null;
 	}
 }

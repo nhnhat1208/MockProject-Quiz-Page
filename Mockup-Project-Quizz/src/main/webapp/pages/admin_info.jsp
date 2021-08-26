@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/admin_info.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/admin_info.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Thông tin</title>
    
@@ -48,16 +49,16 @@
 
                 </div>
                 <div id="scrollVertical" style="height: auto; margin-top: 15px;">
-					<c:forEach items="${testInfo}" var="test">
+					<c:forEach items="${quizInfo}" var="quiz">
 						<div id="historyItem">
 							<img src="../images/testimg.png" alt=""
 								style="object-fit: cover; float: left;">
 							<div style="float: left; margin-left: 15px; width: 50%;">
 								<div>
-									<h2 style="margin: 10px 0 15px 0;">${test.name}</h2>
+									<h2 style="margin: 10px 0 15px 0;">${quiz.name}</h2>
 								</div>
 								<div style="height: 65px;">
-									<p style="max-height: 50px; width: auto; margin-right: 20px;">${test.description}</p>
+									<p style="max-height: 50px; width: auto; margin-right: 20px;">${quiz.description}</p>
 								</div>
 							</div>
 						</div>

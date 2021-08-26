@@ -78,9 +78,24 @@ public class DBUtils extends JdbcDaoSupport {
 		this.getJdbcTemplate().update(sql, params);
 	}
 	
+	public List<TestInfo> findQuizInfo(String username) throws SQLException {
+
+		String sql = "SELECT Test.id,Category.name,Category.description,Category.img_src,Test.username,NUMSCORRECTPERTOTAL = null "
+				+ "FROM Test JOIN Category ON Test.category_id = Category.id WHERE Test.username = ?";
+		
+		Object[] params = new Object[] { username };
+		TestInfoMapper mapper = new TestInfoMapper();
+		try {
+			List<TestInfo> quizInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return quizInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	public List<TestInfo> findTestInfo(String username) throws SQLException {
 
-		String sql = "SELECT c.id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
+		String sql = "SELECT t.id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
 				+ "INNER JOIN Test t ON a.username = t.username "
 				+ "INNER JOIN Category c ON t.category_id = c.id "
 				+ "INNER JOIN Score s ON t.id = s.test_id "
@@ -97,7 +112,9 @@ public class DBUtils extends JdbcDaoSupport {
 	}
 	
 	public List<TestSuggest> findTestSuggest(String username) throws SQLException {
-		String sql = "SELECT * FROM Category where id not in (select category_id from Test where username = ?);";
+		String sql = "SELECT Test.id, Category.name,Category.description,category.img_src,Test.username "
+				+ "FROM Category JOIN Test ON Category.id = Test.category_id "
+				+ "WHERE Category.id not in (SELECT Category.id FROM Category JOIN Test ON Category.id = Test.category_id WHERE Test.username = ?);";
 		
 		Object[] params = new Object[] { username };
 		TestSuggestMapper mapper = new TestSuggestMapper();

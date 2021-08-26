@@ -15,12 +15,17 @@
 
 <body>
     <header>
-        <nav>
+    	<a href="#">
+            <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
+        </a>
+        <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng xuất</a>
+        <a href="/add_quiz" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Tạo đề</a>
+        <a href="/home" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Thông tin</a>
+        <!-- <nav>
             <a href="#">
                 <img class="logo" style="object-fit: scale-down; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
-                <!-- image or something logo -->
             </a>
-        </nav>
+        </nav> -->
         <!-- <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1100px auto 1050px;"  >
 		        <a href="main.html"style="color: white;">
 		            Quiz
@@ -115,9 +120,8 @@
                 </c:forEach>
             </div>
         </div>
-
-
     </div>
+    
     <script src="/lib/mainPage.js"></script>
     <script>
         function GoQuiz(index) {

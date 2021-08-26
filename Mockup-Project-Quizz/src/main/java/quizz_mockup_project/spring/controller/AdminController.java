@@ -34,14 +34,14 @@ public class AdminController {
 			UserAccount user = (UserAccount) objUserBean;
 			if (user.getRole() == 0) {
 				UserAccount userInfo = null;
-				List<TestInfo> testInfo = null;
+				List<TestInfo> quizInfo = null;
 				try {
 					userInfo = this.dao.findUser(user.getUsername());
-					testInfo = this.dao.findTestInfo(user.getUsername());
+					quizInfo = this.dao.findQuizInfo(user.getUsername());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				request.setAttribute("testInfo", testInfo);
+				request.setAttribute("quizInfo", quizInfo);
 				request.setAttribute("userInfo", userInfo);
 
 				return "admin_info";

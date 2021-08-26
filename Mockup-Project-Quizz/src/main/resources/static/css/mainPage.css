@@ -47,6 +47,7 @@ html, body {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    float: left;
 }
 #scrollVertical ::-webkit-scrollbar-track
 {
