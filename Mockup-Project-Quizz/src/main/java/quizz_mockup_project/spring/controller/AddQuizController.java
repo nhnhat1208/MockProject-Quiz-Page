@@ -33,7 +33,14 @@ public class AddQuizController {
 		if (objUserBean == null) {
 			return "login";
 		} else {
-			return "quiz_add";
+			UserAccount user = (UserAccount) objUserBean;
+			if (user.getRole() == 0) {
+				return "quiz_add";
+			} else {
+				response.sendRedirect("/home");
+				return "mainPage";
+			}
+
 		}
 	}
 
