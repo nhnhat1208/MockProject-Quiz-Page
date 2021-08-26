@@ -49,8 +49,6 @@ public class HomeController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(testInfo);
-				System.out.println(testInfo.get(0).getName());
 				request.setAttribute("testInfo", testInfo);
 				request.setAttribute("testSuggest", testSuggest);
 				request.setAttribute("userInfo", userInfo);
