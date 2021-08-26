@@ -1,25 +1,8 @@
-body {
-	margin: 0;
-	width: 1920px !important;
-	height: 1080px;
-}
-
-a, u {
-	
-}
-
 h1 {
 	margin-top: 100;
 	position: relative;
 	padding-top: 8%;
 	margin: 0px 70% 5px 30px;
-}
-
-header {
-	width: 1%;
-	height: 300px;
-	min-height: 100px;
-	background-color: #eeeeee;
 }
 
 form {
