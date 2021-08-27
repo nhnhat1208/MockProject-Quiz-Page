@@ -15,23 +15,25 @@ public class TestInfoMapper implements RowMapper<List<TestInfo>>{
 	public List<TestInfo> mapRow(ResultSet rs, int rowNum) throws SQLException {
 		List<TestInfo> list = new ArrayList<TestInfo>();
 		Integer id = rs.getInt("ID");
+		Integer category_id = rs.getInt("CATEGORY_ID");
 		String name = rs.getString("NAME");
 		String description = rs.getString("DESCRIPTION");
 		String image = rs.getString("IMG_SRC");
         String userName = rs.getString("USERNAME");
         String numsCorrectperTotal = rs.getString("NUMSCORRECTPERTOTAL");
         
-        TestInfo testInfo = new TestInfo(id, name, description, image, userName,numsCorrectperTotal);
+        TestInfo testInfo = new TestInfo(id, category_id, name, description, image, userName,numsCorrectperTotal);
         list.add(testInfo);
         while(rs.next()) {
         	id = rs.getInt("ID");
+        	category_id = rs.getInt("CATEGORY_ID");
     		name = rs.getString("NAME");
     		description = rs.getString("DESCRIPTION");
     		image = rs.getString("IMG_SRC");
             userName = rs.getString("USERNAME");
             numsCorrectperTotal = rs.getString("NUMSCORRECTPERTOTAL");
             
-            testInfo = new TestInfo(id, name, description, image, userName,numsCorrectperTotal);
+            testInfo = new TestInfo(id, category_id, name, description, image, userName,numsCorrectperTotal);
             list.add(testInfo);
         }
         return list;

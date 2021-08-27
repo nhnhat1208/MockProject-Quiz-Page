@@ -15,32 +15,10 @@
 
 <body>
     <header>
-    
-    	<a href="#">
+    	<a href="/">
             <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
         </a>
-		<a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng xuất</a>
-        <a href="/home" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Thông tin</a>
-        <!-- <nav>
-            <a href="#">
-                <img class="logo" style="object-fit: scale-down; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
-            </a>
-        </nav> -->
-        <!-- <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1100px auto 1050px;"  >
-		        <a href="main.html"style="color: white;">
-		            Quiz
-		        </a>
-		    </p>
-	        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1100px auto auto;"  >
-		        <a href="#"style="color: white;">
-		            Thông tin
-		        </a>
-		    </p>
-		    <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px 10px auto auto;"  >
-		      	<a href="login.html"style="color: white;">
-		            Đăng xuất
-		        </a>
-		    </p> -->
+        <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Đăng xuất</a>
     </header>
     <div>
         <div class="userinfo">
@@ -56,7 +34,7 @@
                     <div class="infoLabel">Email: <span class="information" id="email">${userInfo.email}</span></div>
                 </div>
                 <div style="margin: 10px 0 0 5px;">   
-                    <a href="">Chỉnh sửa thông tin cá nhân</a>
+                    <a href="/changeInfo">Chỉnh sửa thông tin cá nhân</a>
                 </div>
             </div>
         </div>
@@ -90,7 +68,7 @@
 		                    </div>
 		                    <div id="quiz">
 		                        <figure>
-		                            <button name="play" onclick="GoQuiz()"></button>
+		                            <button name="play" onclick="GoQuiz(${test.id})"></button>
 		                    	</figure>
 		                	</div>
 		            	</div>
@@ -124,22 +102,9 @@
     
     <script src="/lib/mainPage.js"></script>
     <script>
-        function GoQuiz(index) {
-            console.log(index);
-            $.ajax({
-                type: "GET",
-                url: "./quizEntrance.html?index=" + index,
-                data: "quizId=" + index,
-                success: function(msg){
-                    window.open("./quizEntrance.html?index=" + index,"_self");
-                }
-            });
+        function GoQuiz(test_id) {
+        	$(location).attr('href', "/quiz_entrance?test_id=" + test_id);
         }
-    </script>
-    <script type="text/javascript">
-        document.getElementById("quiz").onclick = function () {
-            location.href = "";
-        };
     </script>
 </body>
 

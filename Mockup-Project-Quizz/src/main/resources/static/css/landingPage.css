@@ -1,0 +1,60 @@
+.body {
+	width: 100%;
+}
+
+.container {
+	background-color: #DCDCDC;
+	height: 1280px;
+	width: 100% !important;
+	display: block;
+}
+
+.card {
+	margin: 20px;
+	border: 2px solid #BEBEBE;
+	border-radius: 50px;
+	display: block;
+	box-shadow: 0 3px 10px rgb(0 0 0/ 0.2);
+	background-color: white;
+}
+
+.imgwrapper {
+	margin: 20px;
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+
+.quizimg {
+	width: 200px;
+	height: 200px;
+	border-radius: 20px;
+	object-fit: cover;
+}
+
+.quizinfo {
+	margin: 20px;
+	float: left;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.doquizbtn {
+	float: right;
+	margin: 50px;
+}
+
+.doquizbtn {
+	background-color: #686868; /* Green */
+	border: 2px solid #BEBEBE;
+	border-radius: 50px;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}

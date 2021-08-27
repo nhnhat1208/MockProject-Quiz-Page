@@ -74,6 +74,7 @@ function pushData() {
 		data: {
 			"topic": document.getElementById('quiztopic').value,
 			"name": document.getElementById('quizname').value,
+			"description": document.getElementById('quizdescription').value,
 			"quizlist": JSON.stringify(quizlist),
 			"rightanswerlist": JSON.stringify(rightanswerlist),
 		},

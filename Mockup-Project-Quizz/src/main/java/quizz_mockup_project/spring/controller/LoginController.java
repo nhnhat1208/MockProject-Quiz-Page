@@ -29,14 +29,7 @@ public class LoginController {
 		if (objUserBean == null) {
 			return "login";
 		} else {
-			UserAccount user = (UserAccount) objUserBean;
-			if (user.getRole() == 0) {
-				response.sendRedirect("/adminInfo");
-				return "admin_info";
-			} else {
-				response.sendRedirect("/home");
-				return "mainPage";
-			}
+			return "landingPage";
 		}
 	}
 
@@ -61,13 +54,7 @@ public class LoginController {
 
 			UserAccount user = this.dao.findUser(name, password);
 			if (user != null) {
-				if (user.getRole() == 0) {
-					// Administer
-					response.getWriter().write("2");
-				} else {
-					// User
-					response.getWriter().write("1");
-				}
+				response.getWriter().write("1");
 				HttpSession session = request.getSession();
 				Object objUserBean = session.getAttribute("user");
 

@@ -15,12 +15,11 @@
 
 <body>
     <header>
-            <a href="#">
+            <a href="/">
                 <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
             </a>
-            <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng xuất</a>
-            <a href="/add_quiz" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Tạo đề</a>
-            <a href="/home" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Thông tin</a>
+            <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Đăng xuất</a>
+            <a href="/add_quiz" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Tạo đề</a>
            
         </header>
     <div>
@@ -37,12 +36,12 @@
                     <div class="infoLabel">Email: <span class="information" id="email">${userInfo.email}</span></div>
                 </div>
                 <div style="margin: 10px 0 0 5px;">   
-                    <a href="">Chỉnh sửa thông tin cá nhân</a>
+                    <a href="/changeInfo">Chỉnh sửa thông tin cá nhân</a>
                 </div>
             </div>
         </div>
         <div class="dashboard">
-            <div id="history" style="width: 100; height: auto;">
+            <div id="history" style="width: 90%; height: auto;">
                 <div id="column" style="height: 55px;">
                     <div style="width: 50%; float:left">
                         <h1 style="margin:10px 0 0 0;">Quiz đã thêm</h1>
@@ -50,22 +49,21 @@
 
                 </div>
                 <div id="scrollVertical" style="height: auto; margin-top: 15px;">
-					<c:forEach items="${quizInfo}" var="quiz">
-						<div id="historyItem">
-							<img src="../images/testimg.png" alt=""
-								style="object-fit: cover; float: left;">
-							<div style="float: left; margin-left: 15px; width: 50%;">
-								<div>
-									<h2 style="margin: 10px 0 15px 0;">${quiz.name}</h2>
-								</div>
-								<div style="height: 65px;">
-									<p style="max-height: 50px; width: auto; margin-right: 20px;">${quiz.description}</p>
-								</div>
-							</div>
-						</div>
-	                </div>
-					</c:forEach>
+					<c:forEach items="${quizInfo}" var="test" >
+				        <div id="historyItem">
+				        	<img src="../images/testimg.png" alt="" style="object-fit: cover; float: left;">
+		                    <div style="float:left; margin-left: 15px; width: 50%;">
+		                       	<div>
+		                            <h2 style="margin: 10px 0 15px 0; ">${test.name}</h2>
+		                        </div>
+		                        <div style="height: 65px;">
+		                            <p style="max-height: 50px; width: auto; margin-right: 20px;">${test.description}</p>
+		                        </div>
+		                    </div>
+		            	</div>
+				    </c:forEach>
 				</div>
+				
             </div>
             
         </div>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>quiz page</title>
@@ -24,7 +23,7 @@
 	style="margin: 0px; padding: 0px; width: auto; height: 1080px; max-width: 1920px; display: block;">
 	<header
 		style="width: auto; min-height: 70px; background-color: #4F5466; margin: 0px; padding: 0px; display: block;">
-		<a href="#"> <img class="logo"
+		<a href="/"> <img class="logo"
 			style="object-fit: scale-down; margin: 5px 0px 10px 50px; height: 55px; width: 55px;"
 			src="../images/logo.png" alt="Logo">
 		</a> <a href="/logout"

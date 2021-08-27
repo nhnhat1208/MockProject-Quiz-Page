@@ -2,6 +2,7 @@ package quizz_mockup_project.spring.bean;
 
 public class TestInfo {
 	private Integer id;
+	private Integer category_id;
 	private String name;
 	private String description;
 	private String image;
@@ -12,8 +13,9 @@ public class TestInfo {
 		super();
 	}
 	
-	public TestInfo(Integer id, String name, String description,String image, String username,String numsCorrectperTotal) {
+	public TestInfo(Integer id, Integer category_id, String name, String description,String image, String username,String numsCorrectperTotal) {
 		this.setId(id);
+		this.setCategory_id(category_id);
 		this.setName(name);
 		this.setDescription(description);
 		this.setImage(image);
@@ -67,5 +69,13 @@ public class TestInfo {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Integer getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Integer category_id) {
+		this.category_id = category_id;
 	}
 }

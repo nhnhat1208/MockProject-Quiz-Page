@@ -33,5 +33,3 @@ function addToRecommended(jsonItem) {
     var item = createRecommendedItem(jsonItem);
     $('#scrollHorizontal').append(item);
 }
-
-addToInformationSection(infor)

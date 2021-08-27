@@ -40,47 +40,14 @@ input[type=submit] {
 </head>
 <body
 	style="font-family: Arial, Helvetica, sans-serif; background-color: white">
-	<!--
-				<header style="width: 100%;    height: 50px ;    min-height: 50px ;    background-color: #4f5466	;    vertical-align: middle;">
-		        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 1% 10px auto auto;"  >
-		        	<a href="login.html"style="color: white;">
-		            Đăng nhập
-		            </a>
-		        </p>
-		        <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 1% 10px auto auto;"  >
-		        	<a href="signUp.html"style="color: white;">
-		            Đăng ký
-		            </a>
-		        </p>
-		        <a href="main.html">
-		        	<img id="icon" src="../img/logo.jpg" style="width: 100px;height:50px" />
-				</a>
-		    </header>
-  -->
-
 
 	<header>
 		<nav>
-			<a href="#"> <img class="logo"
-				style="object-fit: scale-down; height: 55px; width: 55px;"
-				src="../images/logo.png" alt="Logo"> <!-- image or something logo -->
-			</a>
+			<a href="/">
+                <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
+            </a>
+			<a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 20px 20px 0px; float: right;">Đăng xuất</a>
 		</nav>
-		<!-- <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1100px auto 1050px;"  >
-		        <a href="main.html"style="color: white;">
-		            Quiz
-		        </a>
-		    </p>
-	        <p class="guess"style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px -1100px auto auto;"  >
-		        <a href="#"style="color: white;">
-		            Thông tin
-		        </a>
-		    </p>
-		    <p class="guess" style="color: white;  padding: 5px 10px 10px 10px; float: right; margin: 10px 10px auto auto;"  >
-		      	<a href="login.html"style="color: white;">
-		            Đăng xuất
-		        </a>
-		    </p> -->
 	</header>
 
 
@@ -99,6 +66,10 @@ input[type=submit] {
 
 			<p>Tên quiz</p>
 			<textarea id="quizname" class="ansquiz"></textarea>
+			
+			<p>Mô tả</p>
+			<textarea id="quizdescription" class="ansquiz"></textarea>
+			
 			<div class="listquiz" id="listquiz">
 				<fieldset id="ques1">
 					<legend>Câu </legend>

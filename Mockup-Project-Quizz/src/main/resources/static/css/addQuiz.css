@@ -1,93 +1,104 @@
-
-
-        h1  {
-            margin-top: 100;
-            position: relative;
-            padding-top: 8%;
-            margin: 0px 70% 5px 30px;
-        }
-    form{
-    margin: 50px 50px;
-    }
-        input {
-            height: 35px;
-            width: 100%;
-            padding: 0;
-            position: relative;
-            margin-bottom: 14px;
-            border-radius: 35px;
-            border-color: lightgray;
-            display: inline-block;
-            box-sizing: border-box;
-        }
-
-    button {
-             height: 35px;
-            width: 200px;
-            padding: 0;
-            position: relative;
-            margin-bottom: 14px;
-            border-radius: 35px;
-            border-color: lightgray;
-            display: inline-block;
-            box-sizing: border-box;
-    }
-        input[type=submit]{
-            height: 45px;
-            background-color: #4f5466;
-            color: white;
-            margin: auto;
-        }
-    .floatleft {
-    float: left;
-    }
-
-   .floatright {
-    float: right;
-    }
-    .block {
-    display: inline-block;
-    }
-    .clearfix{
-    clear: both;
-    }
-    .inputfield{
-    float: right;
-
-    width: 80%;
-    }
-    .namefield{
-    float: left;
-    margin: 5px 5px;
-    padding: 5x 5px;
-    }
-    .field{
-
-    display: block;
-    padding: 5px 5px;
-    width:100%;
-    }
-    .ansquiz{
-     width:100%;
-    border-radius: 10px;
-    border: 1px solid #000;
-    }
-    .quesquiz{
-    width:100%;
-    }
-    .listquiz{
-    height: 450px;
-    overflow-y: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    }
-    .listquiz::-webkit-scrollbar {
-    display: none;
+h1 {
+	margin-top: 100;
+	position: relative;
+	padding-top: 8%;
+	margin: 0px 70% 5px 30px;
 }
-    #submitButton{
-    width:100px;
-    height:35px !important;
-    }
-    .submitbtn,.addbtn {
-    margin:20px 20px !important;
-    }
+
+form {
+	margin: 50px 50px;
+}
+
+input {
+	height: 35px;
+	width: 100%;
+	padding: 0;
+	position: relative;
+	margin-bottom: 14px;
+	border-radius: 35px;
+	border-color: lightgray;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+button {
+	height: 35px;
+	width: 200px;
+	padding: 0;
+	position: relative;
+	margin-bottom: 14px;
+	border-radius: 35px;
+	border-color: lightgray;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	height: 45px;
+	background-color: #4f5466;
+	color: white;
+	margin: auto;
+}
+
+.floatleft {
+	float: left;
+}
+
+.floatright {
+	float: right;
+}
+
+.block {
+	display: inline-block;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.inputfield {
+	float: right;
+	width: 80%;
+}
+
+.namefield {
+	float: left;
+	margin: 5px 5px;
+	padding: 5x 5px;
+}
+
+.field {
+	display: block;
+	padding: 5px 5px;
+	width: 100%;
+}
+
+.ansquiz {
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #000;
+}
+
+.quesquiz {
+	width: 100%;
+}
+
+.listquiz {
+	height: 450px;
+	overflow-y: scroll;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.listquiz::-webkit-scrollbar {
+	display: none;
+}
+
+#submitButton {
+	width: 100px;
+	height: 35px !important;
+}
+
+.submitbtn, .addbtn {
+	margin: 20px 20px !important;
+}

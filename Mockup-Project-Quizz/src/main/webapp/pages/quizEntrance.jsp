@@ -20,7 +20,7 @@
 
     <body>
         <header>
-            <a href="#">
+            <a href="/">
                 <img class="logo" style="object-fit: scale-down; margin:5px 0px 10px 50px; height: 55px; width: 55px;" src="../images/logo.png" alt="Logo">
             </a>
             <a href="/logout" style="color: white; text-decoration: none; font-size: 20pt; margin: 20px 30px 20px 0px; float: right;">Đăng xuất</a>
@@ -39,8 +39,8 @@
                         <label>Bạn sẽ bắt đầu làm bài kiểm tra này </label>
                         <br>
                         <br>
-                        <label>Điểm kiểm tra lần trước: </label>
-                        <label>1000</label>
+                        <label>Điểm cao nhất: </label>
+                        <label>${best_score}</label>
                         <br>
                         <br>
                         <button id="cancel" onclick="mainPage()">Hủy bỏ</button>

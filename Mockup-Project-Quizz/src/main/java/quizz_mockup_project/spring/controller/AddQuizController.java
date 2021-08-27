@@ -61,6 +61,7 @@ public class AddQuizController {
 		response.setContentType("text/html;charset=UTF-8");
 		String topic = request.getParameter("topic");
 		String name = request.getParameter("name");
+		String description = request.getParameter("description");
 		String list = request.getParameter("quizlist");
 		JSONObject listquiz = new JSONObject(list);
 		list = request.getParameter("rightanswerlist");
@@ -71,7 +72,7 @@ public class AddQuizController {
 		try {
 			category = this.dao.findCategory(topic);
 			if (category == null) {
-				category = new Category(0, topic, "", "");
+				category = new Category(0, topic, description, "");
 				this.dao.newCategory(category);
 			}
 			category = this.dao.findCategory(topic);

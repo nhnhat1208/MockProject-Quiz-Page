@@ -47,7 +47,7 @@ public class HomeController {
 				try {
 					userInfo = this.dao.findUser(user.getUsername());
 					System.out.println(userInfo);
-					testInfo = this.dao.findTestInfo(user.getUsername());
+					testInfo = this.dao.findHistory(user.getUsername());
 					System.out.println(testInfo);
 					testSuggest = this.dao.findTestSuggest(user.getUsername());
 					System.out.println(testSuggest);

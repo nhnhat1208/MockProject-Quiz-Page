@@ -79,12 +79,12 @@ public class DBUtils extends JdbcDaoSupport {
 		Object[] params = new Object[] { test.getTopic(), test.getName(), test.getCategory_id(), test.getUsername() };
 		this.getJdbcTemplate().update(sql, params);
 	}
-	
+
 	public List<TestInfo> findQuizInfo(String username) throws SQLException {
 
-		String sql = "SELECT Test.id,Category.name,Category.description,Category.img_src,Test.username,NUMSCORRECTPERTOTAL = null "
+		String sql = "SELECT Test.id,Test.category_id,Category.name,Category.description,Category.img_src,Test.username,NUMSCORRECTPERTOTAL = null "
 				+ "FROM Test JOIN Category ON Test.category_id = Category.id WHERE Test.username = ?";
-		
+
 		Object[] params = new Object[] { username };
 		TestInfoMapper mapper = new TestInfoMapper();
 		try {
@@ -94,15 +94,13 @@ public class DBUtils extends JdbcDaoSupport {
 			return null;
 		}
 	}
-	
+
 	public List<TestInfo> findTestInfo(String username) throws SQLException {
 
-		String sql = "SELECT t.id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
-				+ "INNER JOIN Test t ON a.username = t.username "
-				+ "INNER JOIN Category c ON t.category_id = c.id "
-				+ "INNER JOIN Score s ON t.id = s.test_id "
-				+ "WHERE a.username = ?;";
-		
+		String sql = "SELECT t.id, t.category_id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
+				+ "INNER JOIN Test t ON a.username = t.username " + "INNER JOIN Category c ON t.category_id = c.id "
+				+ "INNER JOIN Score s ON t.id = s.test_id " + "WHERE a.username = ?;";
+
 		Object[] params = new Object[] { username };
 		TestInfoMapper mapper = new TestInfoMapper();
 		try {
@@ -112,12 +110,26 @@ public class DBUtils extends JdbcDaoSupport {
 			return null;
 		}
 	}
-	
+
+	public List<TestInfo> findHistory(String username) throws SQLException {
+		String sql = "SELECT t.id, t.category_id,c.name,c.description,c.img_src,a.username,s.numsCorrectperTotal FROM Account a "
+				+ "INNER JOIN Score s ON a.username = s.username " + "INNER JOIN Test t ON t.id = s.test_id "
+				+ "INNER JOIN Category c ON c.id = t.category_id " + "WHERE a.username = ?";
+		Object[] params = new Object[] { username };
+		TestInfoMapper mapper = new TestInfoMapper();
+		try {
+			List<TestInfo> testInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return testInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
 	public List<TestSuggest> findTestSuggest(String username) throws SQLException {
 		String sql = "SELECT Test.id, Category.name,Category.description,category.img_src,Test.username "
 				+ "FROM Category JOIN Test ON Category.id = Test.category_id "
 				+ "WHERE Category.id not in (SELECT Category.id FROM Category JOIN Test ON Category.id = Test.category_id WHERE Test.username = ?);";
-		
+
 		Object[] params = new Object[] { username };
 		TestSuggestMapper mapper = new TestSuggestMapper();
 		try {
@@ -149,17 +161,17 @@ public class DBUtils extends JdbcDaoSupport {
 			return null;
 		}
 	}
-	
+
 	public void newCategory(Category category) throws SQLException {
 		String sql = "INSERT INTO [dbo].[Category] ([name], [description], [img_src]) VALUES (?,?,?);";
 
-		Object[] params = new Object[] {category.getName(), category.getDescription(), category.getImg_src()};
+		Object[] params = new Object[] { category.getName(), category.getDescription(), category.getImg_src() };
 		this.getJdbcTemplate().update(sql, params);
 	}
 
 	public Category findCategory(String name) throws SQLException {
 		String sql = "SELECT * FROM [dbo].[Category] a WHERE a.name = ?;";
-		
+
 		Object[] params = new Object[] { name };
 		CategoryMapper mapper = new CategoryMapper();
 		try {
@@ -169,7 +181,7 @@ public class DBUtils extends JdbcDaoSupport {
 			return null;
 		}
 	}
-	
+
 	public List<Quiz> loadQuizes(Integer test_id) {
 		String sql = "SELECT * from [dbo].[Quiz] a WHERE a.test_id = ?;";
 
@@ -181,9 +193,57 @@ public class DBUtils extends JdbcDaoSupport {
 	public void insertScore(Score score) throws SQLException {
 		String sql = "Insert into [dbo].[Score] (username,test_id,attemp,score,numsCorrectperTotal) values (?,?,?,?,?);";
 
-		Object[] params = new Object[] { score.getUsername(), score.getTest_id(), 1, score.getScore(), score.getNumsCorrectperTotal() };
+		Object[] params = new Object[] { score.getUsername(), score.getTest_id(), 1, score.getScore(),
+				score.getNumsCorrectperTotal() };
 
 		this.getJdbcTemplate().update(sql, params);
+	}
+
+	public Score findBestScore(String username, Integer test_id) {
+		String sql = "SELECT TOP 1 * FROM [dbo].[Score] a WHERE a.username=? AND a.test_id=? ORDER BY a.score DESC;";
+		Object[] params = new Object[] { username, test_id };
+		ScoreMapper mapper = new ScoreMapper();
+		try {
+			Score result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return result;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+
+	public int updateInfo(UserAccount account, String newpassword) throws SQLException {
+		String sql = "SELECT * from [dbo].[Account] a WHERE a.username = ?;";
+
+		Object[] params = new Object[] { account.getUsername() };
+		UserAccountMapper mapper = new UserAccountMapper();
+		try {
+			UserAccount result = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			if (!result.getPassword().equals(account.getPassword()))
+				return 0;
+		} catch (EmptyResultDataAccessException e) {
+			return -1;
+		}
+
+		sql = "UPDATE [dbo].[Account] SET password=?, dateBirth=?, email=?, job=?, role=?, image=? WHERE username=?;";
+		params = new Object[] { newpassword, account.getDateBirth(), account.getEmail(), account.getJob(),
+				account.getRole(), account.getImage(), account.getUsername() };
+
+		this.getJdbcTemplate().update(sql, params);
+		
+		return 1;
+	}
+	
+	public List<TestInfo> getAllTest() throws SQLException {
+		String sql = "SELECT t.id, t.category_id,c.name, t.name as description,c.img_src,t.username, '' as numsCorrectperTotal FROM Test t, Category c WHERE c.id = t.category_id ";
+		
+		TestInfoMapper mapper = new TestInfoMapper();
+		try {
+			List<TestInfo> testInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
+			return testInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }
